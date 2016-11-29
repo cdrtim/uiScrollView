@@ -12,6 +12,8 @@
 		818B351B1DEBDC5D009A0471 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 818B35191DEBDC5D009A0471 /* Main.storyboard */; };
 		818B351D1DEBDC5D009A0471 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 818B351C1DEBDC5D009A0471 /* Assets.xcassets */; };
 		818B35201DEBDC5D009A0471 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 818B351E1DEBDC5D009A0471 /* LaunchScreen.storyboard */; };
+		818B35281DEBDC78009A0471 /* scrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B35271DEBDC78009A0471 /* scrollView.swift */; };
+		818B352A1DEBDCEF009A0471 /* shop1-5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 818B35291DEBDCEF009A0471 /* shop1-5.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		818B351C1DEBDC5D009A0471 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		818B351F1DEBDC5D009A0471 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		818B35211DEBDC5D009A0471 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		818B35271DEBDC78009A0471 /* scrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scrollView.swift; sourceTree = "<group>"; };
+		818B35291DEBDCEF009A0471 /* shop1-5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "shop1-5.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +58,9 @@
 		818B35141DEBDC5D009A0471 /* scrollView */ = {
 			isa = PBXGroup;
 			children = (
+				818B35291DEBDCEF009A0471 /* shop1-5.jpg */,
 				818B35151DEBDC5D009A0471 /* AppDelegate.swift */,
+				818B35271DEBDC78009A0471 /* scrollView.swift */,
 				818B35171DEBDC5D009A0471 /* ViewController.swift */,
 				818B35191DEBDC5D009A0471 /* Main.storyboard */,
 				818B351C1DEBDC5D009A0471 /* Assets.xcassets */,
@@ -127,6 +133,7 @@
 				818B35201DEBDC5D009A0471 /* LaunchScreen.storyboard in Resources */,
 				818B351D1DEBDC5D009A0471 /* Assets.xcassets in Resources */,
 				818B351B1DEBDC5D009A0471 /* Main.storyboard in Resources */,
+				818B352A1DEBDCEF009A0471 /* shop1-5.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				818B35281DEBDC78009A0471 /* scrollView.swift in Sources */,
 				818B35181DEBDC5D009A0471 /* ViewController.swift in Sources */,
 				818B35161DEBDC5D009A0471 /* AppDelegate.swift in Sources */,
 			);
