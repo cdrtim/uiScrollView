@@ -9,90 +9,95 @@
 import UIKit
 
 class scrollView: UIViewController , UIScrollViewDelegate   {
+    @IBOutlet weak var pageController: UIPageControl!
+     var frontScrollView: [UIScrollView] = []
     
-    @IBOutlet weak var sld_setZoomScale: UISlider!
-    
+    var pageImages: [String] = []
+    var first = false
     @IBOutlet weak var scrollView: UIScrollView!
     var  photo = UIImageView()
     override func viewDidLoad() {
-        //        UIScrollViewDelegate
         super.viewDidLoad()
-        let imgView = UIImageView(image: UIImage(named: "shop1-5.jpg"))
-        imgView.frame = CGRect(x: 0, y: 0, width:imgView.frame.size.width , height: imgView.frame.size.height)
-        imgView.contentMode = .scaleToFill
-        
-        
-        imgView.isUserInteractionEnabled = true
-        imgView.isMultipleTouchEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapImg(gestrue:)))
-        tap.numberOfTapsRequired = 1
-        imgView.addGestureRecognizer(tap)
-        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(doubleTap(gestrue:)))
-        doubleTap.numberOfTapsRequired = 2
-        tap.require(toFail: doubleTap)
-        imgView.addGestureRecognizer(doubleTap)
-        
-        
-        
-        photo = imgView
-        scrollView.contentSize = CGSize(width: imgView.frame.size.width, height: imgView.frame.size.height)
-        self.scrollView.minimumZoomScale = 0.5
-        self.scrollView.maximumZoomScale = 2.0
-        self.scrollView.addSubview(imgView)
-        
-        
-       
-        
-        
-        
+        pageImages = ["shop1-0.jpg", "shop1-1.jpg", "shop1-2.jpg"]
+        pageController.currentPage = 0
+        pageController.numberOfPages = pageImages.count
+        scrollView.minimumZoomScale = 0.5
+        scrollView.maximumZoomScale = 2.0
+          }
+    
+   
+
+    override func viewDidLayoutSubviews() {
+        if (!first){
+            first = true
+        let pageScrollViewSize = scrollView.frame.size
+        scrollView.contentSize = CGSize(width: pageScrollViewSize.width * CGFloat(pageImages.count), height: 0)
+        for i in 0 ..< pageImages.count {
+            print(i)
+            let imgView = UIImageView(image: UIImage(named: pageImages[i] + ".jpg"))
+            imgView.frame = CGRect(x: (CGFloat(i) * scrollView.frame.size.width), y: 0, width: scrollView.frame.size.width, height: scrollView.frame.size.height)
+            imgView.contentMode = .scaleAspectFit
+            
+            //            scrollView.backgroundColor = UIColor.red
+            
+            self.scrollView.addSubview(imgView)
+        }
+        }
     }
     
-    @IBAction func setZoomScale(_ sender: UISlider) {
-        sender.maximumValue = 2.0
-        sender.minimumValue = 0.5
-//        sender.value = 0.5
-        let scale = CGFloat(sender.value)
-        print(scale)
-        scrollView.setZoomScale(scale, animated: true)
-    
+    @IBAction func onChaneg(_ sender: Any) {
+        scrollView.contentOffset = CGPoint(x: CGFloat(pageController.currentPage) * scrollView.frame.size.width, y: 0)
+        
     }
-    
-    
-    
-    func tapImg(gestrue: UITapGestureRecognizer)
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let pageWidth = scrollView.frame.size.width
+    let page = Int(floor((self.scrollView.contentOffset.x * 2.0 + pageWidth) / (pageWidth * 2.0)))
+    if (pageController.currentPage != page)
     {
-        let position =  gestrue.location(in: photo)
-        zoomRectForScale(scale: scrollView.zoomScale * 1.5, centre: position)
-        
+  //  frontScrollView[pageController.currentPage].zoomScale = 1
+        print(page)
+        print(self.scrollView.contentOffset.x)
+        print(pageWidth)
+        print(scrollView.frame.size.width)
+    pageController.currentPage = page
     }
-    
-    func doubleTap(gestrue: UITapGestureRecognizer)
-    {
-        let position =  gestrue.location(in: photo)
-        zoomRectForScale(scale: scrollView.zoomScale * 0.5, centre: position)
-        
-    }
-    
-    func zoomRectForScale(scale: CGFloat, centre: CGPoint)
-    {
-        var zoomRect = CGRect()
-        let scrollViewSize = scrollView.bounds.size
-        zoomRect.size.width = scrollViewSize.width / scale
-        zoomRect.size.height = scrollViewSize.height / scale
-        zoomRect.origin.x = centre.x - (zoomRect.size.width / 2.0)
-        zoomRect.origin.y = centre.y - (zoomRect.size.height / 2.0)
-        print(zoomRect)
-        scrollView.zoom(to: zoomRect, animated: true)
-        
-        
-        
-        
-    }
+}
+
+
+//    func tapImg(gestrue: UITapGestureRecognizer)
+//    {
+//        let position =  gestrue.location(in: photo)
+//        zoomRectForScale(scale: scrollView.zoomScale * 1.5, centre: position)
+//        
+//    }
+//    
+//    func doubleTap(gestrue: UITapGestureRecognizer)
+//    {
+//        let position =  gestrue.location(in: photo)
+//        zoomRectForScale(scale: scrollView.zoomScale * 0.5, centre: position)
+//        
+//    }
+//    
+//    func zoomRectForScale(scale: CGFloat, centre: CGPoint)
+//    {
+//        var zoomRect = CGRect()
+//        let scrollViewSize = scrollView.bounds.size
+//        zoomRect.size.width = scrollViewSize.width / scale
+//        zoomRect.size.height = scrollViewSize.height / scale
+//        zoomRect.origin.x = centre.x - (zoomRect.size.width / 2.0)
+//        zoomRect.origin.y = centre.y - (zoomRect.size.height / 2.0)
+//        print(zoomRect)
+//        scrollView.zoom(to: zoomRect, animated: true)
+//        
+//        
+//        
+//        
+//    }
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return photo
     }
     
-
+    
     
 }
 
